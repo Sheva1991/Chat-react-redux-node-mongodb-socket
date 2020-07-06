@@ -8,11 +8,11 @@
         display: flex;
         position: relative;
 
-        // &:hover {
-        //     #{$self}__icon-actions {
-        //         display: block;
-        //     }
-        // }
+        &:hover {
+            .message__icon-actions {
+                display: block;
+            }
+        }
     }
 
     &__ava {
@@ -49,7 +49,7 @@
         line-height: 20px;
     }
 
-    &__atachments {
+    &__attachments {
         display: flex;
         margin-bottom: 5px;
         order: 1;
@@ -119,13 +119,13 @@
             display: none;
         }
 
-        // #{$self}__bubble {
+        // .message__bubble {
         //     width: 280px;
         //     position: relative;
         //     overflow: hidden;
         // }
 
-        // #{$self}__audio {
+        // .message__audio {
         //     padding: 15px;
         //     background-color: #3674ff;
         //     border-radius: 12px 12px 0px 12px;
@@ -209,46 +209,47 @@
         }
     }
 
-    // &--is-typing {
-    //     #{$self}__bubble {
-    //         background-color: $message-typing-blue;
-    //         box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04);
-    //         padding: 15px 18px;
-    //         margin-bottom: 0;
-    //     }
-    // }
+    &--is-typing {
+        .message__bubble {
+            background-color: $message-typing-blue;
+            box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04);
+            padding: 15px 18px;
+            margin-bottom: 0;
+        }
+    }
 
-    // &--image {
-    //     #{$self}__attachments {
-    //         &-item {
-    //             img {
-    //                 width: 150px;
-    //                 height: 150px;
-    //             }
-    //         }
-    //     }
-    // }
+    &--image {
+        .message__attachments {
+            &-item {
+                img {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+        }
+    }
 
-    // &__typing {
-    //     span {
-    //         height: 8px;
-    //         width: 8px;
-    //         border-radius: 50%;
-    //         background: $message-typing-circle;
-    //         display: inline-block;
-    //         margin-right: 8px;
-    //         animation: 0.8s typingAnimation infinite ease-out 0.1s;
+    &__typing {
+        span {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background: $message-typing-circle;
+            display: inline-block;
+            margin-right: 8px;
+            animation: 0.8s typingAnimation infinite ease-out 0.1s;
 
-    //         &:nth-of-type(2) {
-    //             animation: 0.8s typingAnimation infinite ease-out 0.2s;
-    //         }
+            &:nth-of-type(2) {
+                animation: 0.8s typingAnimation infinite ease-out 0.2s;
+            }
 
-    //         &:nth-of-type(3) {
-    //             animation: 0.8s typingAnimation infinite ease-out 0.3s;
-    //             margin-right: 0;
-    //         }
-    //     }
-    // }
+            &:nth-of-type(3) {
+                animation: 0.8s typingAnimation infinite ease-out 0.3s;
+                margin-right: 0;
+            }
+        }
+
+    }
 }
 
 @keyframes typingAnimation {

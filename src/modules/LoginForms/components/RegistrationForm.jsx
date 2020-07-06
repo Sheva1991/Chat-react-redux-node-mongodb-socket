@@ -5,6 +5,8 @@ import { UserOutlined, LockOutlined, MailOutlined, ExclamationCircleOutlined } f
 import { Link } from 'react-router-dom'
 import Block from '../../../components/WhiteBlock/Block';
 import { withFormik } from 'formik';
+import validateForm from '../../../utils/validate'
+import validateField from '../../../utils/helpers/validateField'
 
 const RegistrationForm = (props) => {
     const success = false
@@ -27,14 +29,13 @@ const RegistrationForm = (props) => {
             </div>
             <Block>
                 {!success ? <Form
-                    name="normal_login"
-                    className="login-form"
+                    name="register_form"
+                    className="register-form"
                     onSubmit={handleSubmit}
                 >
                     <Form.Item
                         name="email"
-                        validateStatus={!touched.email ? '' :
-                            errors.email ? 'error' : 'success'}
+                        validateStatus={validateField('email', touched, errors)}
                         help={errors.email}
                         hasFeedback
                     >
@@ -47,12 +48,15 @@ const RegistrationForm = (props) => {
                     <Form.Item
                         name="username"
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" size='large' />
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            id='username'
+                            placeholder="Username" size='large' />
                     </Form.Item>
                     <Form.Item
                         name="password"
-                        validateStatus={!touched.password ? '' :
-                            errors.password ? 'error' : 'success'}
+                        validateStatus={validateField('password', touched, errors)}
                         help={errors.password}
                         hasFeedback
                     >
@@ -71,10 +75,12 @@ const RegistrationForm = (props) => {
                         name="repeatPassword"
                     >
                         <Input
-
+                            id='repeatPassword'
                             prefix={<LockOutlined className="site-form-item-icon" />}
                             type="password"
                             placeholder="Repeat password"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
                             size='large'
                         />
                     </Form.Item>
@@ -98,24 +104,18 @@ const RegistrationForm = (props) => {
 
 export default withFormik({
     // Custom sync validation
+    enableReinitialize: true,
+    mapPropsToValues: () => ({
+        email: '',
+        username: '',
+        password: '',
+        repeatPassword: ''
+    }),
     validate: values => {
         let errors = {};
-        if (!values.email) {
-            errors.email = 'Required';
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
-                values.email
-            )
-        ) {
-            errors.email = 'Invalid email address';
-        }
 
-        if (!values.password) {
-            errors.password = 'Required';
-        } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/i.test(
-            values.password)) {
-            errors.password = 'Invalid password.';
-        }
+        validateForm({ isAuth: false, values, errors })
+
         return errors;
     },
 
