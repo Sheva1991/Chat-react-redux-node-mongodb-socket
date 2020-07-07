@@ -14,6 +14,17 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => (
                 value={inputValue}
             />
         </div>
+        {items.map(item => (
+            <DialogItem
+                key={item._id}
+                user={item.user}
+                message={item}
+                undread={0}
+                isMe={item.user._id === userId} />
+
+        ))
+        }
+
         {/* {items.length ? (
             orderBy(items, ["created_at"], ["desc"]).map(item => (
                 <DialogItem

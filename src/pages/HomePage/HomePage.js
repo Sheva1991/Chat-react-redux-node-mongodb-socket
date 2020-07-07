@@ -12,18 +12,31 @@ const HomePage = () => {
     }
     return (
         <section className='home'>
-            <Dialogs items={[{
+            <Dialogs userId={1} items={[{
+                _id: Math.random(),
+                text: 'Some text',
+                isReaded: false,
+                createdAt: new Date(2020, 5, 11),
                 user: {
+                    _id: 1,
                     fullname: 'Vlad',
                     avatar: null
                 },
-                message: {
-                    text: 'Some text',
-                    isReaded: false,
-                    created_at: new Date()
-                }
 
-            }]} userId={user && user._id} />
+            },
+            {
+                _id: Math.random(),
+                text: 'Some text also here',
+                isReaded: false,
+                createdAt: new Date(2020, 6, 7, 22, 14),
+                user: {
+                    _id: 2,
+                    fullname: 'Liza',
+                    avatar: 'https://peopletalk.ru/wp-content/uploads/2016/11/1480331127.jpg'
+                },
+
+            }
+            ]} />
             <Message avatar={user_avatar}
                 text='hi bro ' date='Fri Jun 19 2020 15:24:24'
                 user={{ fullname: 'Vladislav Shevchenko' }}
