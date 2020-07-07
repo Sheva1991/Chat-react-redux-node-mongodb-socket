@@ -3,6 +3,7 @@ import './HomePage.scss'
 import Message from '../../components/Message/Message'
 import Dialogs from '../../components/Dialogs/Dialogs'
 const user_avatar = require('../../assets/images/myface.png')
+const aud = require('../../assets/DZZEL.mp3')
 
 
 
@@ -15,7 +16,7 @@ const HomePage = () => {
                 isReaded: false,
                 createdAt: new Date(2020, 5, 11),
                 user: {
-                    _id: 1,
+                    _id: '3184e6d8bfd0cbbcdc412675ecc5f927',
                     fullname: 'Vlad',
                     avatar: null
                 },
@@ -27,7 +28,7 @@ const HomePage = () => {
                 isReaded: false,
                 createdAt: new Date(2020, 6, 7, 22, 14),
                 user: {
-                    _id: 2,
+                    _id: '3184e6d8bfd0cbbcdc412675ecc5f927',
                     fullname: 'Liza',
                     avatar: 'https://peopletalk.ru/wp-content/uploads/2016/11/1480331127.jpg'
                 },
@@ -70,7 +71,7 @@ const HomePage = () => {
                 ]} />
             <Message avatar={user_avatar}
                 date='Fri Jun 19 2020 15:34:24'
-                audio={true} />
+                audio={aud} />
         </section>
     )
 }

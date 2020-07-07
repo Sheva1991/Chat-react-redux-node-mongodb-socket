@@ -3,13 +3,10 @@ import waveSvg from '../../assets/images/wave.svg';
 import playSvg from '../../assets/images/play.svg';
 import pauseSvg from '../../assets/images/pause.svg';
 import convertCurrentTime from '../../utils/helpers/convertCurrentTime';
-const aud = require('../../assets/DZZEL.mp3')
+
 
 
 const AudioMessage = ({ audioSrc }) => {
-    if (audioSrc === null) {
-        audioSrc = aud
-    }
 
     const audioElem = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
