@@ -1,10 +1,10 @@
 @import '~styles/variables';
 
 .message {
-    margin-bottom: 20px;
 
     &__content {
         max-width: 440px;
+        margin-bottom: 15px;
         display: flex;
         position: relative;
 
@@ -119,61 +119,62 @@
             display: none;
         }
 
-        // .message__bubble {
-        //     width: 280px;
-        //     position: relative;
-        //     overflow: hidden;
-        // }
+        .message__bubble {
+            width: 280px;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
 
-        // .message__audio {
-        //     padding: 15px;
-        //     background-color: #3674ff;
-        //     border-radius: 12px 12px 0px 12px;
-        //     width: 250px;
-        //     overflow: hidden;
-        //     position: relative;
+        .message__audio {
+            background-color: #3674ff;
+            // border-radius: 12px 12px 0px 12px;
+            overflow: hidden;
+            position: relative;
+            padding: 15px;
 
-        //     &-info {
-        //         display: flex;
-        //         align-items: center;
-        //         justify-content: space-between;
-        //         position: relative;
-        //     }
+            &-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
 
-        //     &-btn {
-        //         button {
-        //             display: flex;
-        //             cursor: pointer;
-        //             border: 0;
-        //             width: 28px;
-        //             height: 28px;
-        //             border-radius: 30px;
-        //             background: #0f3997;
+            &-btn {
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    border: 0;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 30px;
+                    background: #0f3997;
 
-        //             img {
-        //                 height: 13px;
-        //                 position: relative;
-        //                 left: 1px;
-        //             }
-        //         }
-        //     }
+                    img {
+                        height: 13px;
+                        position: relative;
+                    }
+                }
+            }
 
-        //     &-duration {
-        //         color: #fff;
-        //         font-weight: 500;
-        //         opacity: 0.5;
-        //         font-size: 12px;
-        //     }
+            &-duration {
+                color: #fff;
+                font-weight: 500;
+                opacity: 0.5;
+                font-size: 12px;
+            }
 
-        //     &-progress {
-        //         left: 0;
-        //         top: 0;
-        //         position: absolute;
-        //         background-color: #418fff;
-        //         height: 100%;
-        //         transition: width 0.3s ease;
-        //     }
-        // }
+            &-progress {
+                left: 0;
+                top: 0;
+                position: absolute;
+                background-color: #418fff;
+                height: 100%;
+                transition: width 0.3s ease;
+            }
+        }
     }
 
     &--isMe {

@@ -14,7 +14,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => (
                 value={inputValue}
             />
         </div>
-        {items.map(item => (
+        {/* {items.map(item => (
             <DialogItem
                 key={item._id}
                 user={item.user}
@@ -23,7 +23,21 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => (
                 isMe={item.user._id === userId} />
 
         ))
-        }
+        } */}
+
+        {items.length ? (
+            orderBy(items, ["createdAt"], ["desc"]).map(item => (
+                <DialogItem
+                    key={item._id}
+                    {...item}
+                    isMe={item.user._id === userId} />
+            ))
+        ) : (
+                <Empty
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    description="Ничего не найдено"
+                />
+            )}
 
         {/* {items.length ? (
             orderBy(items, ["created_at"], ["desc"]).map(item => (

@@ -7,9 +7,6 @@ const user_avatar = require('../../assets/images/myface.png')
 
 
 const HomePage = () => {
-    const user = {
-        _id: '1'
-    }
     return (
         <section className='home'>
             <Dialogs userId={1} items={[{
@@ -64,12 +61,16 @@ const HomePage = () => {
                 isTyping
             />
             <Message avatar={user_avatar}
+                date='Fri Jun 19 2020 15:34:24'
                 attachments={[
                     {
                         filename: 'image.jpg',
                         url: 'https://yt3.ggpht.com/a/AATXAJzN14Z-a_MoxvJ17eSgQgiaOoih-HkjejtouQ=s100-c-k-c0xffffffff-no-rj-mo'
                     }
                 ]} />
+            <Message avatar={user_avatar}
+                date='Fri Jun 19 2020 15:34:24'
+                audio={true} />
         </section>
     )
 }

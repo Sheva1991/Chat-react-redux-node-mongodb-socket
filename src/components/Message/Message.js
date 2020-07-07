@@ -3,18 +3,19 @@ import propTypes from 'prop-types'
 import classNames from 'classnames'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import './Message.scss'
+import AudioMessage from '../AudioMessage/AudioMessage'
 const chekedSvgReaded = require('../../assets/images/dbcheked.svg')
 const chekedSvgNoReaded = require('../../assets/images/cheked.svg')
 
 
 
-const Message = ({ avatar, text, user, date, isMe, isReaded, attachments, isTyping }) => {
+const Message = ({ avatar, text, user, date, isMe, isReaded, attachments, isTyping, audio }) => {
     return (
         <div className={classNames('message', {
             'message--isMe': isMe,
             'message--is-typing': isTyping,
             'message--image': attachments && attachments.length === 1,
-            // 'message--image': !isAudio(attachments) && attachments && attachments.length === 1 && !text,
+            'message--is-audio': audio,
         })} >
             <div className='message__content'>
                 {isMe & isReaded ? <img className='message__icon-readed'
@@ -26,24 +27,27 @@ const Message = ({ avatar, text, user, date, isMe, isReaded, attachments, isTypi
                     <img className='avatar' src={avatar} alt={user ? `Avatar ${user.fullname}` : `Avatar`} />
                 </div>
                 <div className='message__info'>
-                    {(text || isTyping) && (<div className='message__bubble'>
-                        {text && <p className='message__text'>{text}</p>}
-                        {isTyping && (
-                            <div className="message__typing">
-                                <span />
-                                <span />
-                                <span />
+                    {(audio || text || isTyping) &&
+                        (<div className='message__bubble'>
+                            {text && <p className='message__text'>{text}</p>}
+                            {isTyping && (
+                                <div className="message__typing">
+                                    <span />
+                                    <span />
+                                    <span />
+                                </div>
+                            )}
+                            {audio && <AudioMessage audioSrc={null} />}
+                        </div>)}
+
+                    {attachments && (<div className='message__attachments'>
+                        {attachments.map((item, index) => (
+                            <div key={index + 1} className="message__attachments-item">
+                                <img src={item.url} alt={item.filename} />
                             </div>
-                        )}
-                    </div>)}
-                    <div className='message__attachments'>
-                        {attachments &&
-                            attachments.map((item, index) =>
-                                <div key={index + 1} className="message__attachments-item">
-                                    <img src={item.url} alt={item.filename} />
-                                </div>)
-                        }
+                        ))}
                     </div>
+                    )}
                     {date && (<span className='message__date'>{formatDistanceToNow(new Date(date), { addSuffix: true })}</span>)}
                 </div>
             </div>
@@ -59,7 +63,7 @@ Message.propTypes = {
     atachments: propTypes.array,
     isReaded: propTypes.bool,
     isTyping: propTypes.bool,
-    audio: propTypes.string,
+    audio: propTypes.bool,
 }
 
 export default Message

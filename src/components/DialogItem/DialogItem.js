@@ -67,22 +67,22 @@ const renderLastMessage = (message, userId) => {
 //         </Link>
 //     );
 
-const DialogItem = ({ user, message, undread, isMe }) => {
+const DialogItem = ({ user, undread, createdAt, text, isMe }) => {
 
     return (
         <div className={classNames('dialogs__item', {
-            'dialogs__item--online': message.user.isOnline,
+            'dialogs__item--online': user.isOnline,
         })}>
             <div className="dialogs__item-avatar">
-                <Avatar user={message.user} />
+                <Avatar user={user} />
             </div>
             <div className="dialogs__item-info">
                 <div className="dialogs__item-info-top">
-                    <b>{message.user.fullname}</b>
-                    <span>{getMessageTime(message.createdAt)}</span>
+                    <b>{user.fullname}</b>
+                    <span>{getMessageTime(createdAt)}</span>
                 </div>
                 <div className="dialogs__item-info-bottom">
-                    <p>{message.text}</p>
+                    <p>{text}</p>
                     {isMe && <IconReaded isMe={true} isReaded={false} />}
                     {undread > 0 && (
                         <div className="dialogs__item-info-bottom-count">
